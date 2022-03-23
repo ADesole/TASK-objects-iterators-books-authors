@@ -142,8 +142,10 @@ function relatedBooks(bookId, authors, books) {
   );
   let finalArray = [];
   titleList.forEach((elem) => finalArray.push(...elem));
-  finalArray = [...new Set(finalArray)];
-  return finalArray;
+  return finalArray.sort();
+  // finalArray = [...new Set(finalArray)];
+  // without duplicates
+  // return finalArray;
 }
 // console.log(relatedBooks(46, authors, books));
 
