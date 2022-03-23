@@ -157,8 +157,43 @@ function relatedBooks(bookId, authors, books) {
  ****************************************************************/
 function friendliestAuthor(authors) {
   // Your code goes here
+  let copyAuthor = authors;
+  copyAuthor.forEach((author) => (author["repeat"] = 0));
+  // for (let index = 0; index < authors.length; index++) {
+  //   for (let index1 = 0; index1 < authors.length; index1++) {
+  //     copyAuthor[index][repeat] += compareArrays(
+  //       copyAuthor[index].books,
+  //       copyAuthor[index1].books
+  //     );
+  //   }
+  // }
+  copyAuthor.forEach((author) => {
+    for (let index = 0; index < authors.length; index++) {
+      author["repeat"] += compareArrays(author.books, authors[index].books);
+    }
+  });
+  let max = 0;
+  let bestOne = 0;
+  copyAuthor.forEach((author) => {
+    if (author.repeat > max) {
+      max = author.repeat;
+      bestOne = author;
+      // bestOne = authorObj.author;
+    }
+  });
+
+  return bestOne.name;
 }
-// console.log(friendliestAuthor(authors));
+function compareArrays(array1, array2) {
+  let sum = 0;
+  for (let index1 = 0; index1 < array1.length; index1++) {
+    for (let index2 = 0; index2 < array2.length; index2++) {
+      if (array1[index1] === array2[index2]) sum++;
+    }
+  }
+  return sum;
+}
+console.log(friendliestAuthor(authors));
 
 module.exports = {
   getBookById,
