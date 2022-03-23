@@ -77,7 +77,9 @@ function titlesByAuthorName(authorName, authors, books) {
   let bookArray = [];
   //find array of book ids
   //for each push
-
+  if (!getAuthorByName(authorName, authors)) {
+    return [];
+  }
   books.forEach((book) => {
     if (getAuthorByName(authorName, authors).books.includes(book.id))
       bookArray.push(book.title);
